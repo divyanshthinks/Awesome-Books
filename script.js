@@ -1,14 +1,12 @@
-const books = [
-    {
-       title: "Harry",
-       author: "jk"
-    }
-];
 
-const deletebook = (event) => {
-  const indexn = event.currentTarget.dataset.index; 
-  books.splice(parseInt(deletebook),1);
-  additems();
+let books = [];
+if (localStorage.books) books = JSON.parse(localStorage.getItem('books'));
+
+function deletebook(event) {
+    const indexn = event.currentTarget.dataset.index;
+    books.splice(parseInt(deletebook), 1);
+    additems();
+    localStorage.setItem('books', JSON.stringify(books));
 }
 
 const creatli = document.getElementById("list-cr");
@@ -46,6 +44,7 @@ function addBook() {
     book.author = autna.value;
     books.push(book);
     additems();
+    localStorage.setItem('books', JSON.stringify(books));
 }
 
 const btnadd = document.getElementById("add");
