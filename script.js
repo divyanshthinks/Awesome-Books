@@ -23,9 +23,8 @@ function additems() {
     const indexn = event.currentTarget.dataset.index;
     books.splice(parseInt(indexn, 5), 1);
     additems();
-    localStorage.setItem('books', JSON.stringify(books));  
-  }
-  ));
+    localStorage.setItem('books', JSON.stringify(books));
+  }));
 }
 
 additems();
