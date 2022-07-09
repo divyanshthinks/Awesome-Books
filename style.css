@@ -16,6 +16,10 @@ ul {
   list-style: none;
 }
 
+hr {
+  width: 200px;
+}
+
 .append {
   margin-top: 40px;
 }
