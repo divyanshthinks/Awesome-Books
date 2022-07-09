@@ -1,46 +1,59 @@
-let books = [];
-if (localStorage.books) books = JSON.parse(localStorage.getItem('books'));
-
 const creatli = document.getElementById('list-cr');
 
-function additems() {
-  let cards = '';
-  for (let i = 0; i < books.length; i += 1) {
-    const items = `
-        <ul>
-        <li>${books[i].title}</li>
-        <li>${books[i].author}</li>
-        <button data-index = "${i}" class="remove">remove</button>
-        </ul>
-        `;
-
-    cards += items;
-  }
-
-  creatli.innerHTML = cards;
-
-  document.querySelectorAll('.remove').forEach((element) => element.addEventListener('click', (event) => {
-    const indexn = event.currentTarget.dataset.index;
-    books.splice(parseInt(indexn, 5), 1);
-    additems();
-    localStorage.setItem('books', JSON.stringify(books));
-  }));
-}
-
-additems();
 
 const titin = document.getElementById('title');
 const autna = document.getElementById('author');
 
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
+
+class Bookadd {
+    constructor() {
+       this.books = [];
+       if (localStorage.books) this.books = JSON.parse(localStorage.getItem('books'));
+}
+
+ additems() {
+  let cards = '';
+  for (let i = 0; i < this.books.length; i += 1) {
+    const items = `
+        <ul>
+        <li>${this.books[i].title}</li>
+        <li>${this.books[i].author}</li>
+        <button type="button" data-index = "${i}" class="remove"  onclick="removeBooks(event)">remove</button>
+        </ul>
+        `;
+
+    cards += items;
+  };
+
+  creatli.innerHTML = cards;
+}
+}
+
+const bookplus = new Bookadd;
+ bookplus.additems();
+
 function addBook() {
-  const book = {};
-  book.title = titin.value;
-  book.author = autna.value;
-  books.push(book);
-  additems();
-  localStorage.setItem('books', JSON.stringify(books));
+  const book = new Book(titin.value, autna.value);
+  bookplus.books.push(book);
+  bookplus.additems();
+  localStorage.setItem('books', JSON.stringify(bookplus.books));
+  titin.value = '';
+  autna.value = '';
 }
 
 const btnadd = document.getElementById('add');
 
 btnadd.addEventListener('click', addBook);
+
+function removeBooks(event) {
+  const getindex = event.currentTarget.dataset.index;
+  bookplus.books.splice(parseInt(getindex, 5), 1);
+  bookplus.additems();
+  localStorage.setItem('books', JSON.stringify(bookplus.books));
+}
