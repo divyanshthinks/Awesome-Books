@@ -21,9 +21,8 @@ class Bookadd {
   let cards = '';
   for (let i = 0; i < this.books.length; i += 1) {
     const items = `
-        <ul>
-        <li>${this.books[i].title}</li>
-        <li>${this.books[i].author}</li>
+        <ul class="book-items">
+        <li>${this.books[i].title} by ${this.books[i].author} </li>
         <button type="button" data-index = "${i}" class="remove"  onclick="removeBooks(event)">remove</button>
         </ul>
         `;
