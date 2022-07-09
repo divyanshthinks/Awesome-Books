@@ -31,6 +31,7 @@ class Bookadd {
 
     creatli.innerHTML = cards;
   }
+
   addBook() {
     const book = new Book(titin.value, autna.value);
     this.books.push(book);
@@ -46,8 +47,6 @@ class Bookadd {
     this.additems();
     localStorage.setItem('books', JSON.stringify(this.books));
   }
-  
-
 }
 
 const bookplus = new Bookadd();
