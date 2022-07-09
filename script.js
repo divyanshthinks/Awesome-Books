@@ -12,6 +12,7 @@ function additems() {
         <li>${books[i].author}</li>
         <button data-index = "${i}" class="remove">remove</button>
         </ul>
+        <hr>
         `;
 
     cards += items;
